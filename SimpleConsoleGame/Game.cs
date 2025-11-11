@@ -5,7 +5,7 @@
 internal class Game
 {
     private Map _map = null!;
-    private Player _player = null!;
+    private Creature _player = null!;
 
     public Game()
     {
@@ -15,6 +15,7 @@ internal class Game
     {
         Init();
         Play();
+
     }
 
     private void Play()
