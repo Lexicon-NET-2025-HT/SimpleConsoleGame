@@ -1,4 +1,4 @@
-﻿internal class Creature
+﻿internal abstract class Creature : IDrawable
 {
 
     public string Symbol { get; }
@@ -7,15 +7,8 @@
 
     public Creature(Cell cell, string symbol)
     {
-        Cell = cell;
+        ArgumentException.ThrowIfNullOrWhiteSpace(symbol);
+        Cell = cell ?? throw new ArgumentNullException(nameof(cell));
         Symbol = symbol;
-    }
-}
-
-internal class Player : Creature
-{
-    public Player(Cell cell) : base(cell, "P ")
-    {
-        Color = ConsoleColor.White;
     }
 }
