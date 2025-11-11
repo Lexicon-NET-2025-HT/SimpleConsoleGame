@@ -1,6 +1,7 @@
 ﻿
 
 
+
 internal class Game
 {
     private Map _map = null!;
@@ -23,6 +24,7 @@ internal class Game
         do
         {
             //Drawmap
+            Drawmap();
 
             //Getcommand
 
@@ -33,9 +35,31 @@ internal class Game
             //Enenmyaction
 
             //Drawmap
+
+            Console.ReadLine();
             
         }
         while (gameInProgress);
+    }
+
+    private void Drawmap()
+    {
+        Console.Clear();
+
+        for (int y = 0; y < _map.Height ; y++)
+        {
+            for (int x = 0; x < _map.Width; x++)
+            {
+                //ToDo: Fix nullable
+                Cell? cell = _map.GetCell(y, x);
+                Console.ForegroundColor = cell?.Color ?? ConsoleColor.Gray;
+                Console.Write(cell.Symbol);
+            }
+
+            Console.WriteLine();
+        }
+
+        Console.ResetColor();
     }
 
     private void Init()
