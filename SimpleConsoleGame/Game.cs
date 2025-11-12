@@ -28,6 +28,7 @@ internal class Game
             Drawmap();
 
             //Getcommand
+            GetCommand();
 
             //Act
 
@@ -41,6 +42,35 @@ internal class Game
             
         }
         while (gameInProgress);
+    }
+
+    private void GetCommand()
+    {
+        var keyPressed = ConsoleUI.GetKey();
+
+        switch (keyPressed)
+        {
+           
+            case ConsoleKey.UpArrow:
+                Move(_player.Cell.Y - 1, _player.Cell.X);
+                break;
+            case ConsoleKey.DownArrow:
+                Move(_player.Cell.Y + 1, _player.Cell.X);
+                break;
+            case ConsoleKey.LeftArrow:
+                Move(_player.Cell.Y, _player.Cell.X -1);
+                break;
+            case ConsoleKey.RightArrow:
+                Move(_player.Cell.Y, _player.Cell.X + 1);
+                break;
+           
+        }
+    }
+
+    private void Move(int y, int x)
+    {
+        Cell? newPosition = _map.GetCell(y, x);
+        if(newPosition is not null) _player.Cell = newPosition;
     }
 
     private void Drawmap()
