@@ -38,7 +38,7 @@ internal class Game
 
             //Drawmap
 
-            Console.ReadLine();
+            //Console.ReadLine();
             
         }
         while (gameInProgress);
