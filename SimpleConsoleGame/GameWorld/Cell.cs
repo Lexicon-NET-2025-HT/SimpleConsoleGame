@@ -1,4 +1,4 @@
-﻿using SimpleConsoleGame;
+﻿using SimpleConsoleGame.GameWorld;
 
 internal class Cell : IDrawable
 {

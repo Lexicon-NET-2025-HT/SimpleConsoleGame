@@ -1,9 +1,5 @@
-﻿
-
-
-
-using SimpleConsoleGame;
-using SimpleConsoleGame.Extensions;
+﻿using SimpleConsoleGame.Extensions;
+using SimpleConsoleGame.GameWorld;
 
 internal class Game
 {
