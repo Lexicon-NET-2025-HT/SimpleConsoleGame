@@ -1,27 +1,28 @@
 ﻿
 using SimpleConsoleGame.LimitedList;
 
-var name = "Kalle Anka";
+//var name = "Kalle Anka";
 
-foreach (var item in name)
-{
-    Console.WriteLine(item);
-}
+//foreach (var item in name)
+//{
+//    Console.WriteLine(item);
+//}
 
-var li2 = new List<int>();
+//var li2 = new List<int>();
 
-foreach (var item in li2)
-{
-    Console.WriteLine(item);
-}
+//foreach (var item in li2)
+//{
+//    Console.WriteLine(item);
+//}
 
 
-var lm = new LimitedsList<int>(10);
+//IEnumerable<int> lm = new LimitedsList<int>(10);
 
-foreach (var item in lm)
-{
-    Console.WriteLine(item);
-}
+
+//foreach (var item in lm)
+//{
+//    Console.WriteLine(item);
+//}
 
 var game = new Game();
 game.Run();

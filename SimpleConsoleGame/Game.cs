@@ -84,7 +84,9 @@ internal class Game
                 Cell? cell = _map.GetCell(y, x);
                 ArgumentNullException.ThrowIfNull(cell, nameof(cell));
 
-                IDrawable drawable = _map.Creatures.CreatureAt(cell);
+                IDrawable drawable = _map.Creatures.CreatureAt(cell) 
+                                                                 ?? cell.Items.FirstOrDefault() as IDrawable
+                                                                 ?? cell;
                
                 Console.ForegroundColor = drawable.Color;
                 Console.Write(drawable.Symbol);
@@ -103,5 +105,10 @@ internal class Game
         Cell? playerCell = _map.GetCell(0, 0);
         _player = new Player(playerCell!);
         _map.Creatures.Add(_player);
+
+        _map.GetCell(3, 6)?.Items.Add(Item.Coin());
+        _map.GetCell(2, 8)?.Items.Add(Item.Coin());
+        _map.GetCell(3, 6)?.Items.Add(Item.Stone());
+        _map.GetCell(7, 4)?.Items.Add(Item.Stone());
     }
 }
