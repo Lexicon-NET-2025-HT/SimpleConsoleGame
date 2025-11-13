@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36603.0 d17.14
+VisualStudioVersion = 17.14.36603.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleConsoleGame", "SimpleConsoleGame\SimpleConsoleGame.csproj", "{0F54D1A9-EA7D-47CF-9ACA-B73B7D6E4315}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleConsoleGame.LimitedList", "SimpleConsoleGame.LimitedList\SimpleConsoleGame.LimitedList.csproj", "{B506F774-0638-4814-863F-BF865A53423A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +19,17 @@ Global
 		{0F54D1A9-EA7D-47CF-9ACA-B73B7D6E4315}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F54D1A9-EA7D-47CF-9ACA-B73B7D6E4315}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F54D1A9-EA7D-47CF-9ACA-B73B7D6E4315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B506F774-0638-4814-863F-BF865A53423A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B506F774-0638-4814-863F-BF865A53423A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B506F774-0638-4814-863F-BF865A53423A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B506F774-0638-4814-863F-BF865A53423A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0F54D1A9-EA7D-47CF-9ACA-B73B7D6E4315} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B506F774-0638-4814-863F-BF865A53423A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFD6100C-0737-41B3-839D-C27D7920BE40}
