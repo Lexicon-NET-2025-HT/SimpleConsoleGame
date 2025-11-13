@@ -3,6 +3,7 @@
 
 
 using SimpleConsoleGame;
+using SimpleConsoleGame.Extensions;
 
 internal class Game
 {
@@ -84,21 +85,11 @@ internal class Game
         {
             for (int x = 0; x < _map.Width; x++)
             {
-                //ToDo: Fix nullable
                 Cell? cell = _map.GetCell(y, x);
                 ArgumentNullException.ThrowIfNull(cell, nameof(cell));
 
-                IDrawable drawable = cell;
-
-                foreach (Creature creature in _map.Creatures)
-                {
-                    if(creature.Cell == drawable)
-                    {
-                        drawable = creature;
-                    }
-                }
-
-
+                IDrawable drawable = _map.Creatures.CreatureAt(cell);
+               
                 Console.ForegroundColor = drawable.Color;
                 Console.Write(drawable.Symbol);
             }
