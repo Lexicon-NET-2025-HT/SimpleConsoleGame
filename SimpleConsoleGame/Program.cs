@@ -16,9 +16,14 @@ using SimpleConsoleGame.LimitedList;
 //}
 
 
-//IEnumerable<int> lm = new LimitedsList<int>(10);
+IEnumerable<int> lm = new LimitedsList<int>(10);
+
+//var res = lm.Where(i => i > 0).OrderBy()
+
+
 
 //ILimitedsList<Player> lm2 = new LimitedsList<Player>(10);
+//var lm25 = new LimitedsList<Dictionary<string, int>>(10);
 
 
 //foreach (var item in lm)
