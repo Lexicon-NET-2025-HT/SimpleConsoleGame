@@ -4,7 +4,7 @@ using SimpleConsoleGame.GameWorld;
 internal class Game
 {
     private Map _map = null!;
-    private Creature _player = null!;
+    private Player _player = null!;
 
     public Game()
     {
@@ -62,8 +62,32 @@ internal class Game
             case ConsoleKey.RightArrow:
                 Move(Direction.East);
                 break;
+            case ConsoleKey.P:
+                PickUp();
+                break;
            
         }
+    }
+
+    private void PickUp()
+    {
+        if (_player.BackPack.IsFull)
+        {
+            Console.WriteLine("Backpack is full");
+            return;
+        }
+
+        var items = _player.Cell.Items;
+        var item = items.FirstOrDefault();
+
+        if (item is null) return;
+
+        if (_player.BackPack.Add(item))
+        {
+            Console.WriteLine($"Player pick up the {item}");
+            items.Remove(item);
+        }
+    
     }
 
     private void Move(Position movement)
