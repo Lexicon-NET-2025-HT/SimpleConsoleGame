@@ -18,6 +18,8 @@ using SimpleConsoleGame.LimitedList;
 
 //IEnumerable<int> lm = new LimitedsList<int>(10);
 
+//ILimitedsList<Player> lm2 = new LimitedsList<Player>(10);
+
 
 //foreach (var item in lm)
 //{

@@ -2,7 +2,7 @@
 
 namespace SimpleConsoleGame.LimitedList;
 
-public class LimitedsList<T>  : IEnumerable<T>
+public class LimitedsList<T> : IEnumerable<T>, ILimitedsList<T>
 {
     private List<T> _list;
     private readonly int _capacity;
@@ -17,7 +17,7 @@ public class LimitedsList<T>  : IEnumerable<T>
 
     public bool Add(T item)
     {
-        if(IsFull)       return false;
+        if (IsFull) return false;
         _list.Add(item); return true;
     }
 
@@ -28,10 +28,10 @@ public class LimitedsList<T>  : IEnumerable<T>
             //....
             //....
             //....
-           yield return item;
+            yield return item;
         }
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-   
+
 }
