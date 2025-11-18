@@ -1,4 +1,5 @@
 ﻿using SimpleConsoleGame.Benchmarks;
+using SimpleConsoleGame.Extensions;
 using SimpleConsoleGame.LimitedList;
 
 public class LinqBenchMarks
@@ -16,17 +17,24 @@ public class LinqBenchMarks
 
     public void Inventory_Linq()
     {
-        foreach (var msg in BackPack.Select((item, index) => $"{index + 1}: {item}"))
+        foreach (var msg in BackPack.Select((x, i) => $"{i + 1}: {x}"))
         {
             _ui.AddMessage(msg);
         }
     }
 
-    public void Inventory_Ling_ToList()
+    public void Inventory_Linq_With_ToList()
     {
         BackPack
             .Select((x, i) => $"{i + 1}: {x}")
             .ToList()
+            .ForEach(_ui.AddMessage);
+    }
+
+    public void Inventory_Linq_ForEachExtension()
+    {
+        BackPack
+            .Select((x, i) => $"{i + 1}: {x}")
             .ForEach(_ui.AddMessage);
     }
 }

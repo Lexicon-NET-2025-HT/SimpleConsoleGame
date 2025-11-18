@@ -12,8 +12,7 @@ public class DemoBenchmarks
     {
         _benchmarks = new LinqBenchMarks();
 
-
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 100_000; i++)
         {
             _benchmarks.BackPack.Add("Test");
         }
@@ -34,6 +33,12 @@ public class DemoBenchmarks
     [Benchmark]
     public void LinqVersionWithToList()
     {
-        _benchmarks.Inventory_Ling_ToList();
+        _benchmarks.Inventory_Linq_With_ToList();
+    }
+
+    [Benchmark]
+    public void LinqVersionWithForEachExtension()
+    {
+        _benchmarks.Inventory_Linq_ForEachExtension();
     }
 }
