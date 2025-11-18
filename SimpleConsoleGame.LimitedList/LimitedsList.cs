@@ -23,15 +23,22 @@ public class LimitedsList<T> : IEnumerable<T>, ILimitedsList<T>
         _list.Add(item); return true;
     }
 
+    public void ForEach(Action<T, int> action)
+    {
+        for (int i = 0; i < _list.Count; i++)
+            action(_list[i], i);
+    }
+
     public IEnumerator<T> GetEnumerator()
     {
-        foreach (T item in _list)
-        {
-            //....
-            //....
-            //....
-            yield return item;
-        }
+        return _list.GetEnumerator();
+        //foreach (T item in _list)
+        //{
+        //    //....
+        //    //....
+        //    //....
+        //    yield return item;
+        //}
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

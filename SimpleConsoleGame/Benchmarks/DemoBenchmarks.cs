@@ -41,4 +41,10 @@ public class DemoBenchmarks
     {
         _benchmarks.Inventory_Linq_ForEachExtension();
     }
+   
+    [Benchmark]
+    public void ForEachInLimitedList()
+    {
+        _benchmarks.Inventory_Foreach_From_Backpack();
+    }
 }
