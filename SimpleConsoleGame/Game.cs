@@ -5,6 +5,7 @@ internal class Game
 {
     private Map _map = null!;
     private Player _player = null!;
+    private Dictionary<ConsoleKey, Action> _actionMeny = [];
 
     public Game()
     {
@@ -38,7 +39,7 @@ internal class Game
             //Drawmap
 
             //Console.ReadLine();
-            
+
         }
         while (gameInProgress);
     }
@@ -49,7 +50,7 @@ internal class Game
 
         switch (keyPressed)
         {
-           
+
             case ConsoleKey.UpArrow:
                 Move(Direction.North);
                 break;
@@ -62,14 +63,20 @@ internal class Game
             case ConsoleKey.RightArrow:
                 Move(Direction.East);
                 break;
-            case ConsoleKey.P:
-                PickUp();
-                break;
-            case ConsoleKey.I:
-                Inventory();
-                break;
-           
+                //case ConsoleKey.P:
+                //    PickUp();
+                //    break;
+                //case ConsoleKey.I:
+                //    Inventory();
+                //    break;
+
         }
+
+        if (_actionMeny.ContainsKey(keyPressed))
+        {
+            _actionMeny[keyPressed]?.Invoke();
+        }
+
     }
 
     private void Inventory()
@@ -109,14 +116,14 @@ internal class Game
             ConsoleUI.AddMessage($"Player pick up the {item}");
             items.Remove(item);
         }
-    
+
     }
 
     private void Move(Position movement)
     {
         Position newPosition = _player.Cell.Position + movement;
-        var newCell  = _map.GetCell(newPosition);
-        if(newCell is not null) _player.Cell = newCell;
+        var newCell = _map.GetCell(newPosition);
+        if (newCell is not null) _player.Cell = newCell;
     }
 
     private void Drawmap()
@@ -139,5 +146,11 @@ internal class Game
         _map.GetCell(2, 8)?.Items.Add(Item.Coin());
         _map.GetCell(3, 6)?.Items.Add(Item.Stone());
         _map.GetCell(7, 4)?.Items.Add(Item.Stone());
+
+        _actionMeny = new Dictionary<ConsoleKey, Action>()
+            {
+                {ConsoleKey.P, PickUp },
+                {ConsoleKey.I, Inventory }
+            };
     }
 }
