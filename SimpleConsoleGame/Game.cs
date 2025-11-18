@@ -78,6 +78,17 @@ internal class Game
         {
             ConsoleUI.AddMessage($"{i + 1}: {_player.BackPack[i]}");
         }
+
+        //foreach (var msg in _player.BackPack.Select((item, index) => $"{index + 1}: {item}"))
+        //{
+        //    ConsoleUI.AddMessage(msg);
+        //}
+
+        //_player.BackPack
+        //   .Select((x, i) => $"{i + 1}: {x}")
+        //   .ToList()
+        //   .ForEach(ConsoleUI.AddMessage);
+
     }
 
     private void PickUp()
