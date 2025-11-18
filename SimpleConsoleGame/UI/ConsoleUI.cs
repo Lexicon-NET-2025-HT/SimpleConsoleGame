@@ -1,9 +1,12 @@
 ﻿
 
 using SimpleConsoleGame.Extensions;
+using SimpleConsoleGame.LimitedList;
 
 internal class ConsoleUI
 {
+    private static MessageLog<string> _messageLog = new(6);
+
     internal static void Draw(IMap map)
     {
         Console.Clear();
