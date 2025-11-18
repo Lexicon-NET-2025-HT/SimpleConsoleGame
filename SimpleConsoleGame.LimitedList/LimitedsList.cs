@@ -4,7 +4,7 @@ namespace SimpleConsoleGame.LimitedList;
 
 public class LimitedsList<T> : IEnumerable<T>, ILimitedsList<T>
 {
-    private List<T> _list;
+    protected List<T> _list;
     private readonly int _capacity;
     public int Count => _list.Count;
     public bool IsFull => _capacity <= Count;
@@ -15,7 +15,7 @@ public class LimitedsList<T> : IEnumerable<T>, ILimitedsList<T>
         _list = new List<T>(_capacity);
     }
 
-    public bool Add(T item)
+    public virtual bool Add(T item)
     {
         if (IsFull) return false;
         _list.Add(item); return true;
