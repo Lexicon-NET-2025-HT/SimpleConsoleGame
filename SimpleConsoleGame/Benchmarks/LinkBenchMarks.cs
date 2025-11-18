@@ -1,14 +1,16 @@
-﻿using SimpleConsoleGame.LimitedList;
+﻿using SimpleConsoleGame.Benchmarks;
+using SimpleConsoleGame.LimitedList;
 
 public class LinkBenchMarks
 {
     public LimitedsList<string> BackPack { get; } = new(100);
+    private MockUI _ui = new();
 
     public void Inventory_ForLoop()
     {
         for (int i = 0; i < BackPack.Count; i++)
         {
-            
+            _ui.AddMessage($"{i + 1}: {BackPack[i]}");
         }
     }
 
@@ -16,7 +18,7 @@ public class LinkBenchMarks
     {
         foreach (var msg in BackPack.Select((item, index) => $"{index + 1}: {item}"))
         {
-            
+            _ui.AddMessage(msg);
         }
     }
 
@@ -25,6 +27,6 @@ public class LinkBenchMarks
         BackPack
             .Select((x, i) => $"{i + 1}: {x}")
             .ToList()
-            .ForEach();
+            .ForEach(_ui.AddMessage);
     }
 }

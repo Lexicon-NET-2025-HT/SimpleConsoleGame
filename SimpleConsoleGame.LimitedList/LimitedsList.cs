@@ -9,6 +9,8 @@ public class LimitedsList<T> : IEnumerable<T>, ILimitedsList<T>
     public int Count => _list.Count;
     public bool IsFull => _capacity <= Count;
 
+    public T this[int index] => _list[index];
+
     public LimitedsList(int capacity)
     {
         _capacity = Math.Max(capacity, 2);
