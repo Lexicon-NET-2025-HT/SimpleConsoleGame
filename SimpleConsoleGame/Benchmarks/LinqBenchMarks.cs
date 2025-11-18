@@ -1,7 +1,7 @@
 ﻿using SimpleConsoleGame.Benchmarks;
 using SimpleConsoleGame.LimitedList;
 
-public class LinkBenchMarks
+public class LinqBenchMarks
 {
     public LimitedsList<string> BackPack { get; } = new(100);
     private MockUI _ui = new();

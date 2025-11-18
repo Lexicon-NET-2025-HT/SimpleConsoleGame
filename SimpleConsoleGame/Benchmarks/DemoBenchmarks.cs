@@ -5,12 +5,12 @@
 [MemoryDiagnoser]
 public class DemoBenchmarks
 {
-    private LinkBenchMarks _benchmarks = null!;
+    private LinqBenchMarks _benchmarks = null!;
 
     [GlobalSetup]
     public void Setup()
     {
-        _benchmarks = new LinkBenchMarks();
+        _benchmarks = new LinqBenchMarks();
 
 
         for (int i = 0; i < 100; i++)
