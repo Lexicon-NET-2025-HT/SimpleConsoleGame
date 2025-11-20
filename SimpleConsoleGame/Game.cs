@@ -14,8 +14,21 @@ internal class Game
         _actionMeny = new Dictionary<ConsoleKey, Action>()
             {
                 {ConsoleKey.P, PickUp },
-                {ConsoleKey.I, Inventory }
+                {ConsoleKey.I, Inventory },
+                {ConsoleKey.D, Drop }
             };
+    }
+
+    private void Drop()
+    {
+        Item? item = _player.BackPack.FirstOrDefault();
+        if (item != null && _player.BackPack.Remove(item))
+        {
+            _player.Cell.Items.Add(item);
+            _ui.AddMessage($"Player dropped the {item}");
+        }
+        else
+            _ui.AddMessage("Backpack is empty");
     }
 
     internal void Run()

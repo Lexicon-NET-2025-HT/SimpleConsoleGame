@@ -45,4 +45,6 @@ public class LimitedsList<T> : IEnumerable<T>, ILimitedsList<T>
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+    public bool Remove(T item) => _list.Remove(item);
+  
 }
