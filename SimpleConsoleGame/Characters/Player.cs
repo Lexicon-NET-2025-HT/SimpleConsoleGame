@@ -8,7 +8,7 @@ internal class Player : Creature
     {
         Color = ConsoleColor.White;
         BackPack = new LimitedsList<Item>(3);
-        Damage = 100;
+        Damage = 30;
     }
 
 }

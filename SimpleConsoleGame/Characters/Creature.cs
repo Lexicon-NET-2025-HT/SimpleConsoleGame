@@ -11,7 +11,10 @@ public abstract class Creature : IDrawable
     public int MaxHealth { get; }
     public int Damage { get; protected set; } = 50;
     public bool IsDead => _health <= 0;
-    
+
+    public string Name => GetType().Name;
+    public static Action<string>? AddToLog { get; set; }
+
     public ConsoleColor Color
     {
         get => IsDead ? ConsoleColor.Gray : _color;
@@ -43,5 +46,19 @@ public abstract class Creature : IDrawable
         MaxHealth = maxHealth;
         Health = maxHealth;
         Color = ConsoleColor.Green;
+    }
+
+    internal void Attack(Creature target)
+    {
+        if (target.IsDead || this.IsDead) return;
+
+        var attacker = this.Name;
+
+        target.Health -= this.Damage;
+
+        AddToLog?.Invoke($"The {attacker} attacks the {target.Name} for {this.Damage}");
+
+        if (target.IsDead)
+            AddToLog?.Invoke($"The {target.Name} is dead");
     }
 }

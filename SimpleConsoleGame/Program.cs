@@ -4,5 +4,5 @@ using SimpleConsoleGame.LimitedList;
 var game = new Game();
 game.Run();
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Game Over!");
 

@@ -1,5 +1,6 @@
 ﻿using SimpleConsoleGame.Extensions;
 using SimpleConsoleGame.GameWorld;
+using System.Threading.Channels;
 
 internal class Game
 {
@@ -7,6 +8,7 @@ internal class Game
     private Player _player = null!;
     private ConsoleUI _ui;
     private Dictionary<ConsoleKey, Action> _actionMeny;
+    private bool _gameInProgress;
 
     public Game()
     {
@@ -40,7 +42,7 @@ internal class Game
 
     private void Play()
     {
-        bool gameInProgress = true;
+        _gameInProgress = true;
 
         do
         {
@@ -61,7 +63,7 @@ internal class Game
             //Console.ReadLine();
 
         }
-        while (gameInProgress);
+        while (_gameInProgress);
     }
 
     private void GetCommand()
@@ -145,6 +147,17 @@ internal class Game
         Cell? newCell = _map.GetCell(newPosition);
         if (newCell is not null)
         {
+
+            Creature? opponent = _map.CreatureAt(newCell);
+
+            if (opponent is not null)
+            {
+                _player.Attack(opponent);
+                opponent.Attack(_player);
+            }
+
+            _gameInProgress = !_player.IsDead;
+
             _player.Cell = newCell;
             if (newCell.Items.Any())
                 _ui.AddMessage($"Tou see: {string.Join(", ", newCell.Items)}");
@@ -155,7 +168,7 @@ internal class Game
     {
         _ui.Clear();
         _ui.Draw(_map);
-        _ui.PrintStats($"Health: {_player.Health}");
+        _ui.PrintStats($"Health: {_player.Health}, Enemys: {_map.Creatures.Where(c => !c.IsDead).Count() - 1} ");
         _ui.PrintLog();
     }
 
@@ -168,6 +181,8 @@ internal class Game
         _player = new Player(playerCell!);
         _map.Creatures.Add(_player);
 
+        Creature.AddToLog = _ui.AddMessage;
+       // Creature.AddToLog += Console.WriteLine;
 
         var r = new Random();
 

@@ -48,33 +48,39 @@ internal class Map : IMap
     {
 
         //var t = typeof(Player);
-       
+        foreach (Creature creature in Creatures)
+        {
+            if(creature.Name == nameof(Player))
+            {
 
-       
-        //foreach (var item in Creatures)
-        //{
-        //    if(item.GetType() == typeof(Player))
-        //    {
-        //        var p = (Player)item;
-
-        //        var p2 = item as Player;
-        //    }
+            }
+        }
 
 
-        //    if (item is Player)
-        //    {
-        //        var p = (Player)item;
+        foreach (var item in Creatures)
+        {
+            if (item.GetType() == typeof(Player))
+            {
+                var p = (Player)item;
 
-        //        var p2 = item as Player;
-        //    }
-
-        //    if(item is Player player)
-        //    {
-
-        //    }
+                var p2 = item as Player;
+            }
 
 
-        //}
+            if (item is Player)
+            {
+                var p = (Player)item;
+
+                var p2 = item as Player;
+            }
+
+            if (item is Player player)
+            {
+
+            }
+
+
+        }
 
 
 
