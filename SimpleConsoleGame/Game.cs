@@ -4,15 +4,16 @@ using System.Threading.Channels;
 
 internal class Game
 {
-    private IMap _map = null!;
+    private IMap _map;
     private Player _player = null!;
-    private ConsoleUI _ui;
+    private IUI _ui;
     private Dictionary<ConsoleKey, Action> _actionMeny;
     private bool _gameInProgress;
 
-    public Game()
+    public Game(IUI ui, IMap map)
     {
-         _ui = new ConsoleUI();
+        _ui = ui;
+        _map = map;
         _actionMeny = new Dictionary<ConsoleKey, Action>()
             {
                 {ConsoleKey.P, PickUp },
@@ -167,7 +168,7 @@ internal class Game
     private void Drawmap()
     {
         _ui.Clear();
-        _ui.Draw(_map);
+        _ui.Draw();
         _ui.PrintStats($"Health: {_player.Health}, Enemys: {_map.Creatures.Where(c => !c.IsDead).Count() - 1} ");
         _ui.PrintLog();
     }
@@ -176,7 +177,7 @@ internal class Game
     {
 
         //ToDo: Read from config
-        _map = new Map(height: 10, width: 10);
+      
         Cell? playerCell = _map.GetCell(0, 0);
         _player = new Player(playerCell!);
         _map.Creatures.Add(_player);
