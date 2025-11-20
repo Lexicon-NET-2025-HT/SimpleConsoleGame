@@ -33,7 +33,7 @@ internal class ConsoleUI
                 Cell? cell = map.GetCell(y, x);
                 ArgumentNullException.ThrowIfNull(cell, nameof(cell));
 
-                IDrawable drawable = map.Creatures.CreatureAt(cell)
+                IDrawable drawable = map.CreatureAt(cell)
                                                                  ?? cell.Items.FirstOrDefault() as IDrawable
                                                                  ?? cell;
 
