@@ -142,8 +142,13 @@ internal class Game
     private void Move(Position movement)
     {
         Position newPosition = _player.Cell.Position + movement;
-        var newCell = _map.GetCell(newPosition);
-        if (newCell is not null) _player.Cell = newCell;
+        Cell? newCell = _map.GetCell(newPosition);
+        if (newCell is not null)
+        {
+            _player.Cell = newCell;
+            if (newCell.Items.Any())
+                _ui.AddMessage($"Tou see: {string.Join(", ", newCell.Items)}");
+        }
     }
 
     private void Drawmap()
