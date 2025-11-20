@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SimpleConsoleGame.GameWorld;
-internal struct Position
+public struct Position
 {
     public int Y { get; }
     public int X { get; }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SimpleConsoleGame.GameWorld;
-internal class Item : IDrawable
+public class Item : IDrawable
 {
     private readonly string _name;
 

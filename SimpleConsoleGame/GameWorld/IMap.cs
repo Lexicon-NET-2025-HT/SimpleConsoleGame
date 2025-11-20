@@ -1,6 +1,6 @@
 ﻿using SimpleConsoleGame.GameWorld;
 
-internal interface IMap
+public interface IMap
 {
     List<Creature> Creatures { get; }
     int Height { get; }

@@ -5,10 +5,12 @@ internal class Game
 {
     private IMap _map = null!;
     private Player _player = null!;
+    private ConsoleUI _ui;
     private Dictionary<ConsoleKey, Action> _actionMeny;
 
     public Game()
     {
+         _ui = new ConsoleUI();
         _actionMeny = new Dictionary<ConsoleKey, Action>()
             {
                 {ConsoleKey.P, PickUp },
@@ -51,7 +53,7 @@ internal class Game
 
     private void GetCommand()
     {
-        var keyPressed = ConsoleUI.GetKey();
+        var keyPressed = _ui.GetKey();
 
         switch (keyPressed)
         {
@@ -88,7 +90,7 @@ internal class Game
     {
         for (int i = 0; i < _player.BackPack.Count; i++)
         {
-            ConsoleUI.AddMessage($"{i + 1}: {_player.BackPack[i]}");
+            _ui.AddMessage($"{i + 1}: {_player.BackPack[i]}");
         }
 
         //foreach (var msg in _player.BackPack.Select((item, index) => $"{index + 1}: {item}"))
@@ -107,7 +109,7 @@ internal class Game
     {
         if (_player.BackPack.IsFull)
         {
-            ConsoleUI.AddMessage("Backpack is full");
+            _ui.AddMessage("Backpack is full");
             return;
         }
 
@@ -118,7 +120,7 @@ internal class Game
 
         if (_player.BackPack.Add(item))
         {
-            ConsoleUI.AddMessage($"Player pick up the {item}");
+            _ui.AddMessage($"Player pick up the {item}");
             items.Remove(item);
         }
 
@@ -133,10 +135,10 @@ internal class Game
 
     private void Drawmap()
     {
-        ConsoleUI.Clear();
-        ConsoleUI.Draw(_map);
-        ConsoleUI.PrintStats($"Health: {_player.Health}");
-        ConsoleUI.PrintLog();
+        _ui.Clear();
+        _ui.Draw(_map);
+        _ui.PrintStats($"Health: {_player.Health}");
+        _ui.PrintLog();
     }
 
     private void Init()
@@ -168,7 +170,7 @@ internal class Game
             var width = r.Next(0, _map.Width);
             var height = r.Next(0, _map.Height);
 
-            Cell? cell = _map.GetCell(width, height);
+            Cell? cell = _map.GetCell(height, width);
             ArgumentNullException.ThrowIfNull(cell);
 
             return cell;    

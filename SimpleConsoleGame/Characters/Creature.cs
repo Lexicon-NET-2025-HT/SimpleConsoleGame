@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-internal abstract class Creature : IDrawable
+public abstract class Creature : IDrawable
 {
 
     private Cell _cell;
