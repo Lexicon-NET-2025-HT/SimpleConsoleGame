@@ -1,5 +1,6 @@
 ﻿using SimpleConsoleGame.GameWorld;
 
+//Helper class for more clean syntax
 internal class Direction
 {
     public static Position North => new Position(y: -1, x: 0);

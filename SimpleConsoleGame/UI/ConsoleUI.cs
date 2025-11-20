@@ -39,6 +39,11 @@ public class ConsoleUI : IUI
                 Cell? cell = _map.GetCell(y, x);
                 ArgumentNullException.ThrowIfNull(cell, nameof(cell));
 
+                //Order of priority the first to match get printed out
+                //1. Creatures
+                //2. Items
+                //3. Cell
+                //Creatures Items and Cells implements IDrawable and can be threated as one
                 IDrawable drawable = _map.CreatureAt(cell)
                                                                  ?? cell.Items.FirstOrDefault() as IDrawable
                                                                  ?? cell;

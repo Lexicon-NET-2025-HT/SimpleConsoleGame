@@ -2,6 +2,9 @@
 
 namespace SimpleConsoleGame.LimitedList;
 
+//Generic custom list we use for backpack in Player and as a baseclass for MessageLog
+//T can be anything no constrants.
+//What Type T is desides when creating an instance example: var li = new LimitedList<string>(6);
 public class LimitedsList<T> : IEnumerable<T>, ILimitedsList<T>
 {
     protected List<T> _list;
@@ -9,6 +12,7 @@ public class LimitedsList<T> : IEnumerable<T>, ILimitedsList<T>
     public int Count => _list.Count;
     public bool IsFull => _capacity <= Count;
 
+    //Makes it possible to get something from the list based on Index. example: var x = backpack[3]
     public T this[int index]  => _list[index];
     //{  
     //    get => _list[index];

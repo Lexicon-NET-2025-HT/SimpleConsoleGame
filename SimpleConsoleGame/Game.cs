@@ -10,6 +10,8 @@ internal class Game
     private Dictionary<ConsoleKey, Action> _actionMeny;
     private bool _gameInProgress;
 
+
+    //Gets ui and map as abstractions here we dont know which concrete implementation we are working on just what we can do
     public Game(IUI ui, IMap map)
     {
         _ui = ui;
@@ -41,6 +43,7 @@ internal class Game
 
     }
 
+    //Game loop
     private void Play()
     {
         _gameInProgress = true;
@@ -144,13 +147,16 @@ internal class Game
 
     private void Move(Position movement)
     {
+        //Try to move to a new position if the cell with that position is inside the limits of the game 2d map we get a cell othervice null
         Position newPosition = _player.Cell.Position + movement;
         Cell? newCell = _map.GetCell(newPosition);
         if (newCell is not null)
         {
-
+            //Now we know we can move to the new cell
+            //We look for any possible opponent in that cell
             Creature? opponent = _map.CreatureAt(newCell);
 
+            //If someone is there we Attack
             if (opponent is not null)
             {
                 _player.Attack(opponent);
@@ -159,6 +165,7 @@ internal class Game
 
             _gameInProgress = !_player.IsDead;
 
+            //We look for items in the cell if any we write them out to the logg
             _player.Cell = newCell;
             if (newCell.Items.Any())
                 _ui.AddMessage($"Tou see: {string.Join(", ", newCell.Items)}");

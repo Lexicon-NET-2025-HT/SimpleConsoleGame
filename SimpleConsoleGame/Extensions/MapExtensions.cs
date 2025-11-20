@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace SimpleConsoleGame.Extensions;
 internal static class MapExtensions
 {
+    //Not used anymore implementation moved to map
     public static IDrawable? CreatureAt(this IEnumerable<Creature> creatures, Cell cell)
     {
         //IDrawable? result = null;

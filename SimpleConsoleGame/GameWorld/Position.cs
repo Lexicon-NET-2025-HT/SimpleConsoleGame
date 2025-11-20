@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SimpleConsoleGame.GameWorld;
+
+//Custom value type for coordinates in map
 public struct Position
 {
     public int Y { get; }

@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 internal class Map : IMap
 {
-
+    //2 dimensional array all arrays inside have the same length
     private Cell[,] _cells;
 
     public int Height { get; }
