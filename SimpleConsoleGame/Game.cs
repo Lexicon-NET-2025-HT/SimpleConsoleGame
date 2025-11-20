@@ -148,10 +148,31 @@ internal class Game
         _player = new Player(playerCell!);
         _map.Creatures.Add(_player);
 
-        _map.GetCell(3, 6)?.Items.Add(Item.Coin());
-        _map.GetCell(2, 8)?.Items.Add(Item.Coin());
-        _map.GetCell(3, 6)?.Items.Add(Item.Stone());
-        _map.GetCell(7, 4)?.Items.Add(Item.Stone());
+
+        var r = new Random();
+
+        RCell()?.Items.Add(Item.Coin());
+        RCell()?.Items.Add(Item.Coin());
+        RCell()?.Items.Add(Item.Coin());
+        RCell()?.Items.Add(Item.Stone());
+        RCell()?.Items.Add(Item.Stone());
+
+        _map.Place(new Orc(RCell()));
+        _map.Place(new Orc(RCell()));
+        _map.Place(new Troll(RCell()));
+        _map.Place(new Goblin(RCell()));
+        _map.Place(new Goblin(RCell()));
+
+        Cell RCell()
+        {
+            var width = r.Next(0, _map.Width);
+            var height = r.Next(0, _map.Height);
+
+            Cell? cell = _map.GetCell(width, height);
+            ArgumentNullException.ThrowIfNull(cell);
+
+            return cell;    
+        }
 
     }
 }
