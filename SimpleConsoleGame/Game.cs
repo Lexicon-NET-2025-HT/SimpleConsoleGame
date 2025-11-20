@@ -5,10 +5,15 @@ internal class Game
 {
     private Map _map = null!;
     private Player _player = null!;
-    private Dictionary<ConsoleKey, Action> _actionMeny = [];
+    private Dictionary<ConsoleKey, Action> _actionMeny;
 
     public Game()
     {
+        _actionMeny = new Dictionary<ConsoleKey, Action>()
+            {
+                {ConsoleKey.P, PickUp },
+                {ConsoleKey.I, Inventory }
+            };
     }
 
     internal void Run()
@@ -136,6 +141,7 @@ internal class Game
 
     private void Init()
     {
+
         //ToDo: Read from config
         _map = new Map(height: 10, width: 10);
         Cell? playerCell = _map.GetCell(0, 0);
@@ -147,10 +153,5 @@ internal class Game
         _map.GetCell(3, 6)?.Items.Add(Item.Stone());
         _map.GetCell(7, 4)?.Items.Add(Item.Stone());
 
-        _actionMeny = new Dictionary<ConsoleKey, Action>()
-            {
-                {ConsoleKey.P, PickUp },
-                {ConsoleKey.I, Inventory }
-            };
     }
 }

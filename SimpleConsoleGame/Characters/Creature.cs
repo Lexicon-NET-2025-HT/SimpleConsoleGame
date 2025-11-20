@@ -4,10 +4,26 @@ internal abstract class Creature : IDrawable
 {
 
     private Cell _cell;
+    private int _health;
+    private ConsoleColor _color;
 
     public string Symbol { get; }
-    public ConsoleColor Color { get; protected set; } = ConsoleColor.Green;
-    public int Health { get; } = 100;
+    public int MaxHealth { get; }
+    public int Damage { get; protected set; } = 50;
+    public bool IsDead => _health <= 0;
+    
+    public ConsoleColor Color
+    {
+        get => IsDead ? ConsoleColor.Gray : _color;
+        protected set => _color = value;
+    }
+    
+    public int Health
+    {
+        get => _health;
+        set => _health = value >= MaxHealth ? MaxHealth : value;
+    }
+    
     public Cell Cell 
     {
         get => _cell;
@@ -19,10 +35,13 @@ internal abstract class Creature : IDrawable
         }
     }
 
-    public Creature(Cell cell, string symbol)
+    public Creature(Cell cell, string symbol, int maxHealth = 50)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(symbol);
         Cell = cell; 
         Symbol = symbol;
+        MaxHealth = maxHealth;
+        Health = maxHealth;
+        Color = ConsoleColor.Green;
     }
 }
