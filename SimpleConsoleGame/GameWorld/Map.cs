@@ -1,4 +1,6 @@
-﻿using SimpleConsoleGame.GameWorld;
+﻿using Microsoft.Extensions.Configuration;
+using SimpleConsoleGame.Extensions;
+using SimpleConsoleGame.GameWorld;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
@@ -12,12 +14,12 @@ internal class Map : IMap
 
     public List<Creature> Creatures { get; } = new List<Creature>();
 
-    public Map(int height, int width)
+    public Map(IConfiguration config)
     {
-        Height = height;
-        Width = width;
+        Height = config.GetMapSizeFor("y"); 
+        Width = config.GetMapSizeFor("x");
 
-        _cells = new Cell[height, width];
+        _cells = new Cell[Height, Width];
 
         for (int y = 0; y < Height; y++)
             for (int x = 0; x < Width; x++)
