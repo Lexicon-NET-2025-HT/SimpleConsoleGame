@@ -25,4 +25,8 @@
     </None>
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="NETGame.Tests" />
+	</ItemGroup>
+
 </Project>

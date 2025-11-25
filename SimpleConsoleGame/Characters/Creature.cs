@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 //Baseclass for all Characters
 public abstract class Creature : IDrawable

@@ -16,7 +16,7 @@ internal class Map : IMap
 
     public Map(IConfiguration config)
     {
-        Height = config.GetMapSizeFor("y"); 
+        Height = config.GetMapSizeFor("y");
         Width = config.GetMapSizeFor("x");
 
         _cells = new Cell[Height, Width];
@@ -26,6 +26,11 @@ internal class Map : IMap
                 _cells[y, x] = new Cell(new Position(y, x));
 
     }
+
+    //public Map(IConfiguration config, int x, int y)
+    //{
+
+    //}
 
     //[return: MaybeNull]
     public Cell? GetCell(int y, int x)
