@@ -3,17 +3,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleConsoleGame.Extensions;
+using SimpleConsoleGame.GameWorld;
 using SimpleConsoleGame.LimitedList;
 
 //Program starts here creates map and ui the 2 dependencis the Game needs.
 
 
-IConfiguration config = new ConfigurationBuilder()
-                                .SetBasePath(Environment.CurrentDirectory)
-                                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                                .Build();
+//IConfiguration config = new ConfigurationBuilder()
+//                                .SetBasePath(Environment.CurrentDirectory)
+//                                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+//                                .Build();
 
-var uiFromConfig = config.GetSection("game:ui").Value;
+//var uiFromConfig = config.GetSection("game:ui").Value;
 
 
 
@@ -21,10 +22,12 @@ var uiFromConfig = config.GetSection("game:ui").Value;
 var host = Host.CreateDefaultBuilder(args)
                .ConfigureServices(services =>
                {
-                   services.AddSingleton<IUI, ConsoleUI>();
-                   services.AddSingleton<IMap, Map>();
-                   services.AddSingleton<IConfiguration>(config);
-                   services.AddSingleton<Game>();
+                    services.AddSingleton<IUI, ConsoleUI>();
+                    services.AddSingleton<IMap, Map>();
+                   // services.AddSingleton<IConfiguration>(config);
+                    services.AddSingleton<ILimitedsList<string>>(new MessageLog<string>(6));
+                    services.AddSingleton<ILimitedsList<Item>>(new LimitedsList<Item>(3));
+                    services.AddSingleton<Game>();
 
                })
                .UseConsoleLifetime()

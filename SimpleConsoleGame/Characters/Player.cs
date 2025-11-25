@@ -10,7 +10,6 @@ internal class Player : Creature
         BackPack = new LimitedsList<Item>(3);
         Damage = 30;
     }
-
 }
 
 

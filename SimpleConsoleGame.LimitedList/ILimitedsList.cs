@@ -9,4 +9,6 @@ public interface ILimitedsList<T>
     IEnumerator<T> GetEnumerator();
 
     bool Add(T item);
+
+    void Print(Action<T> action);
 }
